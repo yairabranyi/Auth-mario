@@ -20,8 +20,15 @@ mongoose.connect(
   () => console.log('Connected to DB')
 )
 
+//HOME ROUT TEST
+app.get('/', (req, res) => {
+  res.send('HOME OF ALL USERS')
+})
+
+
 //Middlewares
 app.use(express.json())
+
 //Rout Middlewares
 app.use('/api/user', authRout)
 
