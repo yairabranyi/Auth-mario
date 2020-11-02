@@ -3,7 +3,7 @@ const Joi = require('joi')
 //Register Validation
 const registerValidation = data => {
   const schema = Joi.object({
-    username: Joi.string()
+   name: Joi.string()
       .alphanum()
       .min(3)
       .max(30)
@@ -16,7 +16,7 @@ const registerValidation = data => {
       .required()
   })
   console.log('Running Validation')
-  return schema.validateAsync(data)
+  return schema.validate(data)
 }
 
 module.exports.registerValidation = registerValidation
