@@ -3,8 +3,8 @@ const Joi = require('joi')
 //Register Validation
 const registerValidation = data => {
   const schema = Joi.object({
-   name: Joi.string()
-      .alphanum()         
+    name: Joi.string()
+      .alphanum()
       .min(3)
       .max(30)
       .required(),
@@ -20,9 +20,8 @@ const registerValidation = data => {
 }
 
 //Log in Validation
-const logInValidation = (data)=>{
-  
-  const schema = Joi.object({
+const logInValidation = data => {
+  const schemaLogIn = Joi.object({
     password: Joi.string()
       .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
       .required(),
@@ -31,9 +30,8 @@ const logInValidation = (data)=>{
       .required()
   })
   console.log('Running Log in Validation')
-  return schema.validate(data)
+  return schemaLogIn.validate(data)
 }
 
- 
-
+module.exports.logInValidation = logInValidation
 module.exports.registerValidation = registerValidation
