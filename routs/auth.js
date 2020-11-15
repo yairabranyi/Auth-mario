@@ -20,6 +20,7 @@ router.post('/register', async (req, res, next) => {
   //Hash password
   const salt = await bcrypt.genSaltSync(10)
   const hashedPassword = await bcrypt.hash(req.body.password, salt)
+console.log("The Hashed is: ",hashedPassword);
 
   //create a new Userobject by the User schema
   const user = new User({
@@ -61,11 +62,11 @@ router.post('/login', async (req, res, next) => {
   //Check if Password is correct
   const validPass = await bcrypt.compare(req.body.password, user.password)
   if (!validPass) return res.status(400).send('Invalid password')
-  res.send('Login started, User was found')
+  // res.send('Login started, User was found')
 
   //Create and assign a token
-  const token = jwt.sign({}) 
-  
+  const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET) 
+  res.header('auth-token',token).send(token)
 
 })
 

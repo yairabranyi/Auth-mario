@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 //Import Routs
 const authRout = require('./routs/auth')
-
+const postRout = require('./routs/posts')
 dotenv.config()
 
 
@@ -31,5 +31,6 @@ app.use(express.json())
 
 //Rout Middlewares
 app.use('/api/user', authRout)
+app.use('/api/posts', postRout)
 
 app.listen(5000, () => console.log('server running on port 5000'))
